@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 6.1.1 (Python 3.9.13 on win32)" generated="20231107 19:32:51.615" rpa="false" schemaversion="4">
+<suite id="s1" name="GetAPI" source="C:\Users\DELL\PycharmProjects\APIAUTOMATION\testcases\GetAPI.robot">
+<test id="s1-t1" name="VerifyTheUserData" line="12">
+<kw name="Load Json From File" library="JSONLibrary">
+<var>${json_object}</var>
+<arg>${file_path}</arg>
+<doc>Load JSON from file.</doc>
+<msg timestamp="20231107 19:32:51.871" level="INFO">${json_object} = {'TEST_NAME': "Validate the user's data", 'ACTION_CATEGORY': 'TEST', 'TEST_DATA': [{'RELATIVE_URL': 'api/users?page=2', 'REQUEST_TYPE': 'GET', 'RESPONSE_EXPECTED_STATUS': '200', 'RESPONSE_BODY': '{"pa...</msg>
+<status status="PASS" starttime="20231107 19:32:51.869" endtime="20231107 19:32:51.871"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${url}</var>
+<arg>${json_object}</arg>
+<arg>$.TEST_DATA[0].RELATIVE_URL</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<msg timestamp="20231107 19:32:51.904" level="INFO">${url} = ['api/users?page=2']</msg>
+<status status="PASS" starttime="20231107 19:32:51.871" endtime="20231107 19:32:51.904"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${url}</var>
+<arg>${json_object}</arg>
+<arg>$.TEST_DATA[0].RELATIVE_URL</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<msg timestamp="20231107 19:32:51.949" level="INFO">${url} = ['api/users?page=2']</msg>
+<status status="PASS" starttime="20231107 19:32:51.905" endtime="20231107 19:32:51.949"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${status_code}</var>
+<arg>${json_object}</arg>
+<arg>$.TEST_DATA[0].RESPONSE_EXPECTED_STATUS</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<msg timestamp="20231107 19:32:51.968" level="INFO">${status_code} = ['200']</msg>
+<status status="PASS" starttime="20231107 19:32:51.950" endtime="20231107 19:32:51.968"/>
+</kw>
+<for flavor="IN">
+<var>${relative_url}</var>
+<value>@{url}</value>
+<iter>
+<var name="${relative_url}">api/users?page=2</var>
+<kw name="Log" library="BuiltIn">
+<arg>${relative_url}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20231107 19:32:51.968" level="INFO">api/users?page=2</msg>
+<status status="PASS" starttime="20231107 19:32:51.968" endtime="20231107 19:32:51.968"/>
+</kw>
+<status status="PASS" starttime="20231107 19:32:51.968" endtime="20231107 19:32:51.968"/>
+</iter>
+<status status="PASS" starttime="20231107 19:32:51.968" endtime="20231107 19:32:51.968"/>
+</for>
+<for flavor="IN">
+<var>${expected_status_code}</var>
+<value>@{status_code}</value>
+<iter>
+<var name="${expected_status_code}">200</var>
+<kw name="Log" library="BuiltIn">
+<arg>${expected_status_code}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20231107 19:32:51.969" level="INFO">200</msg>
+<status status="PASS" starttime="20231107 19:32:51.969" endtime="20231107 19:32:51.969"/>
+</kw>
+<status status="PASS" starttime="20231107 19:32:51.969" endtime="20231107 19:32:51.969"/>
+</iter>
+<status status="PASS" starttime="20231107 19:32:51.969" endtime="20231107 19:32:51.969"/>
+</for>
+<kw name="Create Session" library="RequestsLibrary">
+<arg>userlogin</arg>
+<arg>${base_url}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20231107 19:32:51.970" level="INFO">Creating Session using : alias=userlogin, url=https://reqres.in/, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20231107 19:32:51.970" endtime="20231107 19:32:51.970"/>
+</kw>
+<kw name="Get Request" library="RequestsLibrary">
+<var>${response}</var>
+<arg>userlogin</arg>
+<arg>${relative_url}</arg>
+<doc>*DEPRECATED* Please use `GET On Session` instead.</doc>
+<msg timestamp="20231107 19:32:51.970" level="WARN">Keyword 'RequestsLibrary.Get Request' is deprecated. Please use `GET On Session` instead.</msg>
+<msg timestamp="20231107 19:32:52.337" level="INFO">GET Request : url=https://reqres.in/api/users?page=2 
+ path_url=/api/users?page=2 
+ headers={'User-Agent': 'python-requests/2.31.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg timestamp="20231107 19:32:52.339" level="INFO">GET Response : url=https://reqres.in/api/users?page=2 
+ status=200, reason=OK 
+ headers={'Date': 'Tue, 07 Nov 2023 14:01:40 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'X-Powered-By': 'Express', 'Access-Control-Allow-Origin': '*', 'Etag': 'W/"406-ut0vzoCuidvyMf8arZpMpJ6ZRDw"', 'Via': '1.1 vegur', 'Cache-Control': 'max-age=14400', 'CF-Cache-Status': 'HIT', 'Age': '384', 'Report-To': '{"endpoints":[{"url":"https:\\/\\/a.nel.cloudflare.com\\/report\\/v3?s=ZkIfTDb0bg%2Fp%2BUFE3LhwturNkh8Q03itMgJR0ISFCPGcNF9Q6fhR0D7N%2FqorIsw%2FKHM3K55rkHiuuprUNEHCL1iMXx5PYKFILq9i2jIAcizCo5xVh7HqjUxE%2FA%3D%3D"}],"group":"cf-nel","max_age":604800}', 'NEL': '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}', 'Vary': 'Accept-Encoding', 'Server': 'cloudflare', 'CF-RAY': '82261c0dba1240c0-SIN', 'Content-Encoding': 'gzip'} 
+ body={"page":2,"per_page":6,"total":12,"total_pages":2,"data":[{"id":7,"email":"michael.lawson@reqres.in","first_name":"Michael","last_name":"Lawson","avatar":"https://reqres.in/img/faces/7-image.jpg"},{"id":8,"email":"lindsay.ferguson@reqres.in","first_name":"Lindsay","last_name":"Ferguson","avatar":"https://reqres.in/img/faces/8-image.jpg"},{"id":9,"email":"tobias.funke@reqres.in","first_name":"Tobias","last_name":"Funke","avatar":"https://reqres.in/img/faces/9-image.jpg"},{"id":10,"email":"byron.fields@reqres.in","first_name":"Byron","last_name":"Fields","avatar":"https://reqres.in/img/faces/10-image.jpg"},{"id":11,"email":"george.edwards@reqres.in","first_name":"George","last_name":"Edwards","avatar":"https://reqres.in/img/faces/11-image.jpg"},{"id":12,"email":"rachel.howell@reqres.in","first_name":"Rachel","last_name":"Howell","avatar":"https://reqres.in/img/faces/12-image.jpg"}],"support":{"url":"https://reqres.in/#support-heading","text":"To keep ReqRes free, contributions towards server costs are appreciated!"}} 
+ </msg>
+<msg timestamp="20231107 19:32:52.339" level="INFO">C:\Users\DELL\PycharmProjects\APIAUTOMATION\venv\lib\site-packages\urllib3\connectionpool.py:1100: InsecureRequestWarning: Unverified HTTPS request is being made to host 'reqres.in'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg timestamp="20231107 19:32:52.340" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20231107 19:32:51.970" endtime="20231107 19:32:52.340"/>
+</kw>
+<kw name="Should Be True" library="BuiltIn">
+<arg>'${response.status_code}'=='${expected_status_code}'</arg>
+<doc>Fails if the given condition is not true.</doc>
+<status status="PASS" starttime="20231107 19:32:52.341" endtime="20231107 19:32:52.345"/>
+</kw>
+<doc>Validate the user's data from response</doc>
+<tag>smoke</tag>
+<status status="PASS" starttime="20231107 19:32:51.869" endtime="20231107 19:32:52.347"/>
+</test>
+<status status="PASS" starttime="20231107 19:32:51.616" endtime="20231107 19:32:52.352"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+<stat pass="1" fail="0" skip="0">smoke</stat>
+</tag>
+<suite>
+<stat pass="1" fail="0" skip="0" id="s1" name="GetAPI">GetAPI</stat>
+</suite>
+</statistics>
+<errors>
+<msg timestamp="20231107 19:32:51.970" level="WARN">Keyword 'RequestsLibrary.Get Request' is deprecated. Please use `GET On Session` instead.</msg>
+</errors>
+</robot>
